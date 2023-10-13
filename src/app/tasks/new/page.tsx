@@ -29,6 +29,14 @@ function NewTask({ params }: { params: { id: string } }) {
     router.refresh();
   });
 
+  const onDelete = async () => {
+    if (confirm("¿Estas seguro de eliminar esta tarea?")) {
+      await axios.delete(`/api/tasks/${params.id}`);
+      router.push("/tasks");
+      router.refresh();
+    }
+  };
+
   return (
     <main className="flex justify-center items-center h-[calc(100vh-7rem)] w-full bg-gray-900">
       <section className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
@@ -61,6 +69,15 @@ function NewTask({ params }: { params: { id: string } }) {
             >
               {params.id ? "Editar Tarea" : "Crear Tarea"}
             </button>
+            {params.id && (
+              <button
+                type="button"
+                className="mt-4 focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-red-600 hover:bg-red-700 focus:ring-red-900"
+                onClick={onDelete}
+              >
+                Eliminar Tarea
+              </button>
+            )}
           </div>
         </form>
       </section>
