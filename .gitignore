@@ -70,6 +70,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-prisma/migrations/migration_lock.toml
-prisma/migrations/20231013042630_init/migration.sql
+
+
+# vercel
+.vercel 
+
+# prisma
+prisma/migrations/*
 prisma/dev.db
+
+*.env*
